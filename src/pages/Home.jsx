@@ -10,6 +10,8 @@ import Testimonials from "../components/Testimonials";
 import Founder from "../components/Founder";
 import Contact from "../components/Contact";
 import { scrollToId } from "../lib/scroll";
+import Seo from "../components/Seo";
+import { homeSeo } from "../data/seo";
 
 export default function Home() {
   const location = useLocation();
@@ -23,6 +25,10 @@ export default function Home() {
 
   return (
     <main>
+      <Seo title={homeSeo.title} description={homeSeo.description} path={homeSeo.path} />
+      <h1 className="sr-only">
+        Alpha Software — production-ready web and mobile systems for startups
+      </h1>
       <Hero />
       <About />
       <Skills />

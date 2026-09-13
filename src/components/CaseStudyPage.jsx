@@ -1,17 +1,43 @@
+import { useMemo } from "react";
 import { useParams, Link } from "react-router-dom";
 import { projects } from "../data/projects";
 import Container from "./Container";
 import SectionLabel from "./ui/SectionLabel";
 import MagneticButton from "./ui/MagneticButton";
 import ProjectScreen from "./ui/ProjectScreen";
+import Seo from "./Seo";
+import { SITE, origin } from "../data/seo";
 
 export default function CaseStudyPage() {
   const { id } = useParams();
   const project = projects.find((p) => p.id === id);
 
+  const jsonLd = useMemo(() => {
+    if (!project) return null;
+    return {
+      "@context": "https://schema.org",
+      "@type": "CreativeWork",
+      name: `${project.title} Case Study`,
+      description: project.desc,
+      url: `${origin()}/case-study/${project.id}`,
+      creator: {
+        "@type": "Organization",
+        name: SITE.name,
+      },
+      about: project.caseStudy.techStack,
+      keywords: project.caseStudy.techStack.join(", "),
+    };
+  }, [project]);
+
   if (!project) {
     return (
       <section className="min-h-[80vh] flex items-center">
+        <Seo
+          title="Case study not found"
+          description="This Alpha Software case study could not be found."
+          path={`/case-study/${id ?? ""}`}
+          noIndex
+        />
         <Container>
           <p className="text-[10px] tracking-[0.28em] uppercase text-white/45 mb-6">
             404 / Not found
@@ -33,6 +59,13 @@ export default function CaseStudyPage() {
 
   return (
     <article className="pt-32 pb-24">
+      <Seo
+        title={`${project.title} Case Study`}
+        description={caseStudy.overview.slice(0, 158)}
+        path={`/case-study/${project.id}`}
+        type="article"
+        jsonLd={jsonLd}
+      />
       <Container>
         <Link
           to="/"

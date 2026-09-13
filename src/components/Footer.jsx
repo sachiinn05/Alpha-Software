@@ -12,8 +12,14 @@ export default function Footer() {
         >
           alphasoftware.co.in@gmail.com
         </a>
-        <p className="mt-6 text-lg text-white/70">+91 96959 81330</p>
-        <p className="mt-2 text-sm text-muted">Lucknow, India · Shipping worldwide</p>
+        <p className="mt-6 text-lg text-white/70">
+          <a href="tel:+919695981330" className="hover:opacity-70">
+            +91 96959 81330
+          </a>
+        </p>
+        <address className="mt-2 text-sm text-muted not-italic">
+          Lucknow, India · Shipping worldwide
+        </address>
 
         <div className="mt-10 flex flex-wrap gap-6 text-[11px] tracking-[0.22em] uppercase text-white/60">
           <a href="https://www.linkedin.com/in/sujeet-kumar-aa55a524b/" target="_blank" rel="noopener noreferrer" className="hover:text-white">

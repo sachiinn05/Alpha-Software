@@ -161,6 +161,16 @@ button {
   animation: marquee 42s linear infinite;
 }
 
+.testimonial-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 48s linear infinite;
+}
+
+.testimonial-marquee:hover {
+  animation-play-state: paused;
+}
+
 @keyframes marquee {
   from {
     transform: translateX(0);
