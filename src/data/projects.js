@@ -1,10 +1,18 @@
-
-  export const projects = [
+export const projects = [
   {
     id: "brevio",
     title: "Brevio",
     desc: "OTT & Short Video Platform for creators and viewers",
     image: "https://www.brevio.online/favicon.png",
+    visual: {
+      kind: "ott",
+      eyebrow: "OTT / Short video",
+      headline: "Watch. Create. Repeat.",
+      paper: "#111114",
+      ink: "#f4f1ea",
+      accent: "#ff3b5c",
+      muted: "#9a9388",
+    },
 
     caseStudy: {
       overview:
@@ -46,6 +54,15 @@
   desc: "OTT streaming platform available on the Google Play Store",
   image:
     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSlULhmahnrRL72Xe-pkzYZh9mFg9UsWePmqw&s",
+  visual: {
+    kind: "cinema",
+    eyebrow: "Streaming / Android",
+    headline: "Cinema in your pocket.",
+    paper: "#0d0c0a",
+    ink: "#f3efe4",
+    accent: "#d4b56a",
+    muted: "#8b8578",
+  },
 
   caseStudy: {
     overview:
@@ -87,6 +104,15 @@
   desc: "Cross-platform social media app on Play Store & App Store",
   image:
     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnRLrf82FqpenRPRnIcA6yt6PoAvPa010k-A&s",
+  visual: {
+    kind: "social",
+    eyebrow: "Social / iOS + Android",
+    headline: "Share what lasts.",
+    paper: "#f6f1e8",
+    ink: "#1a1612",
+    accent: "#c45c26",
+    muted: "#7a7168",
+  },
 
   caseStudy: {
     overview:
@@ -128,6 +154,15 @@
   desc: "Web-based social platform for event discovery and management",
   image:
     "https://www.gplusevents.com/assets/images/G%20Plus%20Events%20logo%20high%20res.webp",
+  visual: {
+    kind: "events",
+    eyebrow: "Events / Community",
+    headline: "Find the night.",
+    paper: "#f7f7f4",
+    ink: "#111111",
+    accent: "#5b4dff",
+    muted: "#6f6f6a",
+  },
 
   caseStudy: {
     overview:
@@ -169,6 +204,15 @@
   desc: "Online platform for ordering beer, whisky, and alcoholic beverages",
   image:
     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQgJdgtD8GSSq9VzbcS_-7PVCjoYNk4CmD_xQ&s",
+  visual: {
+    kind: "commerce",
+    eyebrow: "Commerce / Delivery",
+    headline: "A toast to the night.",
+    paper: "#f4efe6",
+    ink: "#1c1610",
+    accent: "#8a5a2b",
+    muted: "#7c7368",
+  },
 
   caseStudy: {
     overview:

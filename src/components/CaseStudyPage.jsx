@@ -1,81 +1,104 @@
 import { useParams, Link } from "react-router-dom";
-import Container from "./Container";
 import { projects } from "../data/projects";
+import Container from "./Container";
+import SectionLabel from "./ui/SectionLabel";
+import MagneticButton from "./ui/MagneticButton";
+import ProjectScreen from "./ui/ProjectScreen";
 
 export default function CaseStudyPage() {
   const { id } = useParams();
   const project = projects.find((p) => p.id === id);
 
   if (!project) {
-    return <div className="p-10 text-white">Case study not found</div>;
+    return (
+      <section className="min-h-[80vh] flex items-center">
+        <Container>
+          <p className="text-[10px] tracking-[0.28em] uppercase text-white/45 mb-6">
+            404 / Not found
+          </p>
+          <h1 className="display-title text-5xl mb-8">Case study not found</h1>
+          <MagneticButton to="/">Return home</MagneticButton>
+        </Container>
+      </section>
+    );
   }
 
   const { caseStudy } = project;
+  const blocks = [
+    { title: "Overview", body: caseStudy.overview },
+    { title: "The challenge", body: caseStudy.problem },
+    { title: "The solution", body: caseStudy.solution },
+    { title: "Outcome", body: caseStudy.result },
+  ];
 
   return (
-    <section className="py-32">
+    <article className="pt-32 pb-24">
       <Container>
-
-        <Link to="/" className="text-purple-400 text-sm mb-6 inline-block">
-          ← Back to Projects
+        <Link
+          to="/"
+          className="text-[10px] tracking-[0.24em] uppercase text-white/50 hover:text-white"
+        >
+          ← Back to work
         </Link>
 
-        <h1 className="text-5xl font-extrabold mb-4">
-          {project.title}
-        </h1>
-
-        <p className="text-gray-400 text-lg mb-12">
-          {project.desc}
-        </p>
-
-        <div className="glass rounded-3xl p-10 space-y-10 max-w-4xl">
-
+        <div className="mt-10 grid lg:grid-cols-[1.2fr_0.8fr] gap-12 items-end">
           <div>
-            <h3 className="text-2xl font-semibold mb-3">Overview</h3>
-            <p className="text-gray-400">{caseStudy.overview}</p>
+            <SectionLabel index="CS" label={project.id} />
+            <h1 className="display-title text-5xl md:text-7xl mb-6">
+              {project.title}
+            </h1>
+            <p className="text-lg text-muted max-w-2xl">{project.desc}</p>
           </div>
-
-          <div>
-            <h3 className="text-2xl font-semibold mb-3">The Challenge</h3>
-            <p className="text-gray-400">{caseStudy.problem}</p>
+          <div className="aspect-[16/10] overflow-hidden bg-[#111]">
+            <ProjectScreen project={project} />
           </div>
+        </div>
 
-          <div>
-            <h3 className="text-2xl font-semibold mb-3">The Solution</h3>
-            <p className="text-gray-400">{caseStudy.solution}</p>
-          </div>
+        <div className="mt-20 space-y-16 max-w-3xl">
+          {blocks.map((block) => (
+            <section key={block.title}>
+              <h2 className="text-[10px] tracking-[0.28em] uppercase text-white/45 mb-4">
+                {block.title}
+              </h2>
+              <p className="text-lg text-ivory/80 leading-relaxed">{block.body}</p>
+            </section>
+          ))}
 
-          <div>
-            <h3 className="text-2xl font-semibold mb-3">Key Features</h3>
-            <ul className="space-y-2 text-gray-400">
+          <section>
+            <h2 className="text-[10px] tracking-[0.28em] uppercase text-white/45 mb-5">
+              Key features
+            </h2>
+            <ul className="space-y-3">
               {caseStudy.features.map((f) => (
-                <li key={f}>• {f}</li>
+                <li key={f} className="flex gap-3 text-muted">
+                  <span className="text-white/40">/</span>
+                  {f}
+                </li>
               ))}
             </ul>
-          </div>
+          </section>
 
-          <div>
-            <h3 className="text-2xl font-semibold mb-3">Technology Stack</h3>
-            <div className="flex flex-wrap gap-3">
+          <section>
+            <h2 className="text-[10px] tracking-[0.28em] uppercase text-white/45 mb-5">
+              Technology stack
+            </h2>
+            <div className="flex flex-wrap gap-2">
               {caseStudy.techStack.map((t) => (
                 <span
                   key={t}
-                  className="px-4 py-2 rounded-full bg-purple-500/10
-                             text-purple-300 text-sm border border-purple-500/20"
+                  className="px-3 py-1.5 text-[10px] tracking-[0.16em] uppercase border border-white/15 text-white/70"
                 >
                   {t}
                 </span>
               ))}
             </div>
-          </div>
+          </section>
+        </div>
 
-          <div>
-            <h3 className="text-2xl font-semibold mb-3">Outcome</h3>
-            <p className="text-gray-400">{caseStudy.result}</p>
-          </div>
-
+        <div className="mt-20 pt-10 border-t border-white/8">
+          <MagneticButton to="/">All work</MagneticButton>
         </div>
       </Container>
-    </section>
+    </article>
   );
 }
